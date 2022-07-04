@@ -1,0 +1,106 @@
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-0 ms-2 ms-lg-5" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar Brand-->
+
+    {% if base_logo %}
+
+    <a href="" id="logo_image_area" style="max-width:120px; margin:0 20px;">
+        <img src="{{ base_logo.url }}" alt="">
+    </a>
+    {% else %}
+    <a class="navbar-brand ps-3" href="">Logo</a>
+    {% endif %}
+
+
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#!">회원정보(준비중)</a></li>
+                <li>
+                    <hr class="dropdown-divider"/>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'accountapp:logout' %}">로그아웃</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    {% if request.user.is_authenticated %}
+    <span style="color:white; display:inline-block;" class="mr-5 mr-md-1">{{ request.user.nickname }}님 </span> <span class="d-none d-md-inline" style="color:white;">반갑습니다</span>
+    {% endif %}
+</nav>
+
+<!--sb-sidenav-light-->
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        {% if base_theme == 'dark' %}
+
+        {% else %}
+        <!-- <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion"> -->
+        {% endif %}
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">관리자 메뉴</div>
+                    <a class="nav-link" href="{% url 'shopconfig:shopbase' %}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
+                        기본 설정
+                    </a>
+
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        쇼핑몰설정
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="">쇼핑몰설정</a>
+                            <a class="nav-link" href="">메뉴관리</a>
+                            <a class="nav-link" href="">팝업관리</a>
+                            <a class="nav-link" href="">분류관리</a>
+                            <a class="nav-link" href="">요금제관리</a>
+                            <a class="nav-link" href="">상품관리</a>
+                            <a class="nav-link" href="">일반 상품 판매관리</a>
+                            <a class="nav-link" href="">휴대폰 판매관리</a>
+                        </nav>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">certified as</div>
+            </div>
+        </nav>
+    </div>
+
+    <script type="text/javascript">
+var om_param = getParameterByName('om'); // 1060192
+if(om_param == 'on'){
+  $('#collapseLayouts').addClass('show')
+}
+var om_param = getParameterByName('mm'); // 1060192
+if(om_param == 'on'){
+  $('#collapsePages').addClass('show')
+}
+
+
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+    </script>
