@@ -1,0 +1,62 @@
+.inputlist{display: flex; flex-wrap: wrap;}
+.inputflex{display: flex; margin-right: 10px; margin-bottom: 10px; font-size: 14px;}
+.center_text{display: flex; justify-content: flex; align-items: center; margin-right: 3px;}
+.currentDate{font-size: 12px; padding: 4px; border:1px solid #dbdbdb; border-radius: 5px;}
+a{text-decoration:none;}
+
+/* 테이블 관련 */
+
+  table.type05 { border-collapse: collapse; border-left: 1px solid #ccc; font-size: 13px;}
+  table.type05 tbody th { padding: 5px; font-weight: bold; vertical-align: middle; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background:#D9E5FF; text-align: center;}
+  table.type05 td { padding: 5px; vertical-align: middle;   border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; text-align:center; }
+
+
+  table.type07 { width: 100%; border-collapse: collapse; border-left: 1px solid #ccc; font-size: 13px;}
+  table.type07 tbody th { padding: 10px; font-weight: bold; vertical-align: middle; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background: #ececec; text-align: center; font-family: 'HallymGothic-Medium';}
+  table.type07 td { padding: 10px; vertical-align: middle;   border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; text-align:center; font-family: 'HallymGothic-Regular';}
+  .detail_customer{cursor: pointer;}
+
+
+  table.type08 { width: 100%; border-collapse: collapse; border-left: 1px solid #ccc; font-size: 13px;}
+  table.type08 tbody th { padding: 10px; font-weight: bold; vertical-align: middle; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background: #ececec; text-align: center; font-family: 'HallymGothic-Regular';}
+  table.type08 td { min-width: 50px; padding: 10px; vertical-align: middle; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; text-align:center; }
+
+  table.type18 { width: 100%; border-collapse: collapse; border-left: 1px solid #ccc; font-size: 12px;}
+  table.type18 tbody th { padding: 3px; font-weight: bold; vertical-align: middle; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; background: #ececec; text-align: center;}
+  table.type18 td { min-width: 50px; padding: 3px; vertical-align: middle; border: 1px solid #ccc;text-align:center; font-weight: bold;}
+
+
+
+  table.type20 { width: 100%; border-collapse: collapse; border-left: 1px solid #ccc; font-size: 13px;}
+  table.type20 tbody th { padding: 10px; font-weight: bold; vertical-align: middle; border-right: none; border-left: none; border-bottom: 1px solid #ccc; background: #ececec; text-align: center; font-family: 'HallymGothic-Medium';}
+  table.type20 td { padding: 5px; vertical-align: middle; border-right: none; border-left: none; border-bottom: 1px solid #ccc; text-align:center; font-family: 'HallymGothic-Regular';}
+  .detail_customer{cursor: pointer;}
+
+  table.type_no_line { width: 100%; border-collapse: collapse; border:none; font-size: 13px;}
+  table.type_no_line tbody th { padding: 10px; font-weight: bold; vertical-align: middle; border:none; background: #ececec; text-align: center; font-family: 'HallymGothic-Medium';}
+  table.type_no_line td { padding: 5px; vertical-align: middle; border:none; text-align:center; font-family: 'HallymGothic-Regular';}
+  .detail_customer{cursor: pointer;}
+
+  .if_th{width: 20%;}
+  .if_td{text-align: left !important;}
+  .lh_span{line-height:30px;}
+  .opt_box{border: 1px solid black; margin-top: 30px; height: 250px; overflow: auto;}
+
+  @media screen and (max-width: 992px) {
+    .table_wrap{width: 100%; overflow: auto;}
+    .table_area{width:100%; min-width: 1000px;}
+    .table_area_mk{width:100%; min-width: 880px;}
+  }
+
+  /* 상단 고정 */
+  .back_icon{cursor: pointer;}
+  .top_fix{position: fixed; top: 56px; width: 100%; display: flex; background-color: white; z-index: 999; border-bottom: 1px solid black; padding: 10px; font-family: 'Pretendard-Medium';}
+  .align{display: flex; align-items: center;}
+  .top_margin{margin-top: 60px;}
+
+  /* 버튼 수정 */
+  .onpp{padding: 2px 10px !important; height: 24px !important;}
+  .menubtns{display: flex; justify-content: center;}
+
+  /* 옵션 */
+  .opt_btn{text-align: right; padding-right: 50px; margin-bottom: 15px;}

@@ -1,0 +1,438 @@
+
+<section id="sit_info" class="container mt-5">
+  <div id="sit_tab">
+    <ul class="tab_tit mb-3">
+      <li><button type="button" rel="#sit_inf" class="selected">상품정보</button></li>
+      <li><button type="button" rel="#sit_use">사용후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
+      <li><button type="button" rel="#sit_qa">상품문의  <span class="item_qa_count"><?php echo $item_qa_count; ?></span></button></li>
+      <li><button type="button" rel="#sit_dex">배송/교환</button></li>
+    </ul>
+
+    <div class="row">
+
+
+      <ul class="tab_con col-12 col-lg-9">
+        <!-- 상품 정보 시작 { -->
+        <li id="sit_inf">
+          test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>vv
+        </li>
+        <!-- 사용후기 시작 { -->
+        <li id="sit_use">
+          <div id="itemuse" class="mt-5"><?php include_once(G5_SHOP_PATH.'/itemuse.php'); ?></div>
+        </li>
+        <!-- } 사용후기 끝 -->
+
+        <!-- 상품문의 시작 { -->
+        <li id="sit_qa">
+          <h2>상품문의</h2>
+          <div id="itemqa"><?php include_once(G5_SHOP_PATH.'/itemqa.php'); ?></div>
+        </li>
+        <!-- } 상품문의 끝 -->
+
+        <style media="screen">
+        .table_wrap{font-size: 16px; }
+        .table_wrap th{font-family: 'Pretendard-Regular'; width:28%;}
+        .table_wrap td{font-family: 'Pretendard-Light'; width:72%}
+        @media screen and (max-width: 768px) {
+          .table_wrap{font-size: 12px; }
+        }
+        </style>
+
+
+
+
+        <!-- 배송/교환 시작 { -->
+        <li id="sit_dex">
+          <div class="col-12 col-md-10 col-lg-9 mx-auto table_wrap">
+            <table class="table">
+              <tr>
+                <th>지정 택배사</th>
+                <td>로젠택배 / 우체국택배</td>
+              </tr>
+              <tr>
+                <th>배송기간</th>
+                <td>주문 후 평균 2일 이내 (도서 산간 지역시 7일 이내)</td>
+              </tr>
+              <tr>
+                <th>배송비</th>
+                <td>10만원 미만 2,500원 / 이상 무료</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 배송비</th>
+                <td>반품시 : 편도 3,500원 / 교환비 : 7,000원</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 기간</th>
+                <td>단숨변심 시 교환 및 반품 7일 이내</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 불가 사유</th>
+                <td>
+                  1. 교환 및 반품 기간이 지난 경우<br>
+                  2. 구매자의 책임으로 상품의 분실 또는 훼손된 경우<br>
+                  3. 고객의 요청사항에 맞춰 제작에 들어가는 맞춤 제작의 경우
+                </td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 배송지</th>
+                <td>경기도 부천시 성주로 86-4 102동 901호</td>
+              </tr>
+
+            </table>
+          </div>
+          <!-- <h2>배송/교환정보</h2> -->
+
+          <?php if ($default['de_baesong_content']) { // 배송정보 내용이 있다면 ?>
+            <!-- 배송 시작 { -->
+            <!-- <div id="sit_dvr">
+            <h3>배송</h3>
+            <?php echo conv_content($default['de_baesong_content'], 1); ?>
+          </div> -->
+          <!-- } 배송 끝 -->
+        <?php } ?>
+
+        <?php if ($default['de_change_content']) { // 교환/반품 내용이 있다면 ?>
+          <!-- 교환 시작 { -->
+          <!-- <div id="sit_ex" >
+          <h3>교환</h3>
+          <?php echo conv_content($default['de_change_content'], 1); ?>
+        </div> -->
+        <!-- } 교환 끝 -->
+      <?php } ?>
+
+    </li>
+    <!-- } 배송/교환  끝 -->
+  </ul>
+
+  <div class="d-none d-lg-block col-3 side_opt">
+    <ul class="side_opt_wrap">
+      <li class="side_opt_subject">
+        옵션 선택
+      </li>
+      <li class="side_opt_opt_sub">가입유형</li>
+      <li class="clone_opt_gyuh"></li>
+      <li class="side_opt_opt_sub">요금제</li>
+      <li class="clone_opt_yog"></li>
+      <li class="side_opt_opt_sub">색상</li>
+      <li class="clone_opt_color"></li>
+
+
+
+      <li class="seleon_opt_area">
+        <span class="no_opt">옵션을 선택하세요</span>
+        <div class="ok_opt">
+          <span class="selon sel_model">갤럭시S22 울트라</span> | <span class="selon sel_hyuh">공시지원 할인</span> | <span class="selon sel_yog">베이직초이스</span> | <span class="selon sel_halwon">1,199,000원</span>
+        </div>
+      </li>
+
+      <li class="">
+        <button type="submit" name="button" class="side_submit_btn">주문하기</button>
+      </li>
+    </ul>
+  </div>
+
+
+</div>
+</div>
+
+</form>
+<script type="text/javascript">
+$(function (){
+  $(".tab_con>li").hide();
+  $(".tab_con>li:first").show();
+  $(".tab_tit li button").click(function(){
+    $(".tab_tit li button").removeClass("selected");
+    $(this).addClass("selected");
+    $(".tab_con>li").hide();
+    $($(this).attr("rel")).show();
+  });
+});
+</script>
+
+
+<div id="sit_buy" class="fix">
+  <div class="sit_buy_inner">
+    <?php if($option_item) {    // 선택옵션이 있다면 ?>
+      <!-- 선택옵션 시작 { -->
+      <!-- <section class="sit_side_option">
+      <h3>선택옵션</h3>
+      <?php // 선택옵션
+      echo str_replace(array('class="get_item_options"', 'id="it_option_', 'class="it_option"'), array('class="get_side_item_options"', 'id="it_side_option_', 'class="it_side_option"'), $option_item);
+      ?>
+    </section> -->
+    <!-- } 선택옵션 끝 -->
+  <?php } // end if?>
+
+  <?php if($supply_item) {    // 추가옵션이 있다면 ?>
+    <!-- 추가옵션 시작 { -->
+    <section class="sit_side_option">
+      <h3>추가옵션</h3>
+      <?php // 추가옵션
+      echo str_replace(array('id="it_supply_', 'class="it_supply"'), array('id="it_side_supply_', 'class="it_side_supply"'), $supply_item);
+      ?>
+    </section>
+    <!-- } 추가옵션 끝 -->
+  <?php } // end if?>
+
+  <?php if ($is_orderable) { ?>
+    <!-- 선택된 옵션 시작 { -->
+    <!-- <section class="sit_sel_option">
+    <h3>선택된 옵션</h3>
+    <ul class="sit_opt_added">
+    <?php if( !$option_item ){ ?>
+    <li>
+    <div class="opt_name">
+    <span class="sit_opt_subj"><?php echo $it['it_name']; ?></span>
+  </div>
+  <div class="opt_count">
+  <label for="ct_qty_<?php echo $i; ?>" class="sound_only">수량</label>
+  <button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sound_only">감소</span></button>
+  <input type="text" name="ct_copy_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
+  <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only">증가</span></button>
+  <span class="sit_opt_prc">+0원</span>
+</div>
+</li>
+<?php } ?>
+</ul>
+</section> -->
+<!-- } 선택된 옵션 끝 -->
+
+<!-- <div class="sum_section">
+<div class="sit_tot_price"></div>
+
+<div class="sit_order_btn">
+<button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="sit_btn_cart">장바구니</button>
+<button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="sit_btn_buy">바로구매</button>
+</div>
+</div> -->
+<?php } ?>
+
+</div>
+</div>
+</section>
+
+
+<?php
+
+
+$ms_arr = explode(',',$it['it_mainstan']);
+// print_r($ms_arr);
+
+if($ms_arr[0] == "SK"){
+  $fo = "1";
+}elseif ($ms_arr[0] == "KT") {
+  $fo = "2";
+}else{
+  $fo = "3";
+}
+$on_choolgo = $it['it_ph'.$fo.'_fprice'];
+$on_choolgo = explode(',',$on_choolgo);
+$on_choolgo = $on_choolgo[0];
+
+$on_gongsi = explode(',',$it['it_ph'.$fo.'_gfund']);
+
+
+
+
+?>
+
+
+
+<script type="text/javascript">
+
+
+var opt_gyuh = $('.opt_gyuh').clone();
+$('.clone_opt_gyuh').append(opt_gyuh);
+
+var opt_yog = $('.opt_yog').clone();
+$('.clone_opt_yog').append(opt_yog);
+
+var opt_color = $('.opt_color').clone();
+$('.clone_opt_color').append(opt_color);
+
+
+var it_ghalwon_json = "<?php echo json_encode($it_ghalwon) ?>"
+var it_ghalwon_json = JSON.parse(it_ghalwon_json)
+
+var it_shalwon_json = "<?php echo json_encode($it_shalwon) ?>"
+var it_shalwon_json = JSON.parse(it_shalwon_json)
+
+var yog_arr_json = '<?php echo $yog_json ?>'
+var yog_arr_json = JSON.parse(yog_arr_json)
+
+
+
+$('.opt_gyuh').change(function(){
+
+  $('.opt_yog').empty()
+  $('.opt_gyuh').val(this.value).prop("selected",true)
+  $('.opt_yog').attr('disabled', false);
+
+  var templates = "<option value=''>요금제 선택</option>";
+  $('.opt_yog').append(templates)
+
+  if(this.value == 'gongsi'){
+    for (var i = 0; i < it_ghalwon_json.length; i++) {
+      var templates = "<option value="+it_ghalwon_json[i]+">"+yog_arr_json[i]+"</option>"
+      $('.opt_yog').append(templates)
+    }
+  }else{
+    for (var i = 0; i < it_ghalwon_json.length; i++) {
+      var templates = "<option value="+it_shalwon_json[i]+">"+yog_arr_json[i]+"</option>"
+      $('.opt_yog').append(templates)
+    }
+  }
+
+
+  $('.opt_yog').children('option:eq(0)').text('요금제')
+})
+
+
+$('.opt_yog').change(function(){
+  $('.opt_yog').val(this.value).prop("selected",true)
+  $('.opt_color').attr('disabled', false);
+  $('.no_opt').hide()
+  $('.ok_opt').show()
+  $('.opt_color').children('option:eq(0)').text('색상 선택')
+
+
+
+  var target = document.querySelector('.opt_gyuh');
+  var opt_gyuh_text = target.options[target.selectedIndex].text
+  console.log(opt_gyuh_text);
+  console.log(this.value);
+  console.log(this.options[this.selectedIndex].text);
+
+  $('.sel_model').empty()
+  $('.sel_hyuh').empty()
+  $('.sel_yog').empty()
+  $('.sel_halwon').empty()
+
+  $('.sel_model').append("<?php echo $it['it_subname'] ?>")
+  $('.sel_hyuh').append(opt_gyuh_text)
+  $('.sel_yog').append(this.options[this.selectedIndex].text)
+  $('.sel_halwon').append(addComma(this.value) + " 원")
+  document.querySelector('.po_yog').value = this.options[this.selectedIndex].text
+
+
+
+})
+
+$('.opt_color').change(function(){
+
+  document.querySelector('.sel_color_num').value = this.selectedIndex
+
+  $('.opt_color').val(this.value).prop("selected",true)
+  $('.opt_color').children('option:eq(0)').text('색상 선택')
+})
+
+
+
+
+
+$(document).scroll(function(){
+  var windowNow = document.documentElement.scrollTop
+  var divTop = document.querySelector(".side_opt_wrap")
+
+  if(windowNow > 720){
+    var setMargin = windowNow - 600
+
+    $(divTop).css({
+      'margin-top' : setMargin
+    })
+  }
+})
+
+
+var ms_arr = <?php echo json_encode($ms_arr) ?>;
+var on_gongsi = <?php echo json_encode($on_gongsi) ?>;
+var on_choolgo = "<?php echo $on_choolgo ?>";
+on_gongsi.pop()
+var nowtong = ms_arr[0];
+
+var it_cotype = "<?php echo $it['it_cotype'] ?>"
+
+var it_name = "<?php echo $it['it_subname'] ?>"
+
+
+$.ajax({
+  url : "./ph_ajax.php",
+  dataType: 'json',
+  async:false,
+  method: 'POST',
+  data : {'sell_tong' : nowtong , 'sell_system' : it_cotype },
+  success : function(idata){
+    yog_info = idata
+  }
+});
+
+yog_info.pop()
+
+$('.iy').empty()
+
+var template1 = "<div class='gongsi_menu'><span>"+nowtong+" "+it_name+" 공시지원 할인 요금제표</span></div><table border='1'><tbody><tr class='head_line'><td>요금제</td><td>기본료</td><td>출고가</td><td>공시지원금</td><td>추가지원금</td><td>할부원금<br><span class='minif'>(쇼핑몰 결제금액)</span></td><td>월 청구금액</td></tr>"
+$('.iy').append(template1)
+for (var i = 0; i < yog_info.length; i++) {
+
+  var rowtemplate = ""
+  if(i == 0){
+    var rowtemplate = "<td rowspan='4'>"+addComma(Number(on_choolgo))+"원</td>"
+  }
+
+  var add_halin = Number(on_gongsi[i]) * 0.15
+  var add_halin = Number(add_halin)
+  var halwon = Number(on_choolgo) - on_gongsi[i] - add_halin
+  var halwon = Math.round(halwon / 100) * 100
+  var template2 = "<tr><td>"+yog_info[i]['py_name']+"</td><td>"+addComma(yog_info[i]['py_fee'])+"원</td>"+rowtemplate+"<td>"+addComma(on_gongsi[i])+"원</td><td>"+addComma(add_halin)+"원</td><td class='gfee_line'>"+addComma(halwon)+"원</td><td>"+addComma(yog_info[i]['py_fee'])+"원</td></tr>";
+  $('.iy').append(template2)
+}
+
+var toptemplate = "</tbody></table><div class='sunyak_menu'><span>"+nowtong+" "+it_name+" 선택약정 할인 요금제표</span></div><table border='1'><tbody><tr class='head_line'><td>요금제</td><td>기본료</td><td>출고가</td><td>25% 할인</td><td>할인적용 기본료</td><td>할부원금<br> <span class='minif'>(쇼핑몰 결제금액)</span> </td><td>월 청구금액</td></tr>"
+$('.iy').append(toptemplate)
+
+for (var i = 0; i < yog_info.length; i++) {
+
+  var rowtemplate = ""
+  if(i == 0){
+    var rowtemplate = "<td rowspan='4'>"+addComma(Number(on_choolgo))+"원</td>"
+  }
+
+  var tfhalin = yog_info[i]['py_fee'] * 0.25;
+  var halin_yog = Number(yog_info[i]['py_fee']) - tfhalin;
+
+  var template2 = "<tr><td>"+yog_info[i]['py_name']+"</td><td>"+addComma(yog_info[i]['py_fee'])+"원</td>"+rowtemplate+"<td>"+addComma(tfhalin)+"원</td><td>"+addComma(halin_yog)+"원</td><td class='gfee_line'>"+addComma(on_choolgo)+"원</td><td>"+addComma(halin_yog)+"원</td></tr>";
+  $('.iy').append(template2)
+}
+
+
+
+// ********* 요금제 상세
+
+var oooos = "<div class='info_menu'><span>SK 요금제 상세 정보</span></div><table border='1'><tr class='head_line'><td>요금제</td><td>통화/문자</td><td>데이터</td><td>부가사항</td></tr>"
+var alltem = oooos
+for (var i = 0; i < yog_info.length; i++) {
+  var rowtemplate = ""
+  if(i == 0){
+    var rowtemplate = "<td rowspan='4'>무제한</td>"
+  }
+  var template2 = "<tr><td>"+yog_info[i]['py_name']+"</td>"+rowtemplate+"<td>"+yog_info[i]['py_data']+"</td><td class='minif'>"+yog_info[i]['py_addinfo']+"</td></tr>";
+
+  var alltem = alltem + template2
+  // console.log(alltem);
+
+}
+$('.iy').append(alltem)
+//
+// var allii = toptemplatei + all_template
+// $('.iy').append(allii)
+
+// var foottemplate = "</tbody></table>"
+// $('.iy').append(foottemplate)
+
+
+
+function addComma(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+</script>

@@ -1,0 +1,124 @@
+
+/* item_skin1 */
+#sit_pvi_thumb{display: flex; justify-content: center; overflow: auto; margin-top: 15px;}
+.sit_pvi_big{text-align: center;}
+.sit_pvi_big img{width: 100%; max-width: 300px;}
+.sit_title{font-family: 'SpoqaHanSansNeo-Medium'; text-align: center; font-size: 24px;}
+
+
+
+.cust_price{font-family: 'Pretendard-Regular'; text-decoration: line-through; font-size: 18px; text-align: right; padding-right: 25px;}
+.sell_price{font-family: 'Pretendard-SemiBold'; font-size: 24px; text-align: right; padding-right: 25px;}
+.send_cost{text-align: right; padding-right: 25px; font-family: 'Pretendard-Light';}
+
+#sit_sel_option{font-family: 'SpoqaHanSansNeo-Medium'; text-align: right; margin-top: 20px;}
+.btn_frmline{border: 1px solid black; border-radius: 50%; background-color: white; margin:0 10px;}
+.btn_delline{border: 1px solid black; border-radius: 50%; padding: 2px 8px; background-color: white;}
+.sit_opt_list{text-align: right;}
+.sit_opt_subj{display: inline-block; margin-bottom: 10px; font-family: 'Pretendard-Light'; font-size: 18px;}
+#sit_tot_price{text-align: right; font-family: 'Pretendard-SemiBold'; font-size: 24px;}
+
+#sit_ov_btn{text-align: center; margin-top: 20px; display: flex; justify-content: space-around;}
+
+.sit_btn_cart{width:45%; border:1px solid #3F0099; background-color: white; padding: 10px 0; font-family: 'SUIT-Bold'; font-size: 18px; border-radius: 5px; color:#3F0099;}
+.sit_btn_buy{width:45%; border:1px solid #3F0099; background-color: #3F0099; color:white; padding: 10px 0; font-family: 'SUIT-Bold'; font-size: 18px; border-radius: 5px;}
+
+.sit_open_opt{position: fixed; left: 0px; bottom:0px; width: 100%; border-top: 1px solid #3F0099; padding: 10px 5px; background-color: white; z-index: 999; display: none;}
+.sit_btn_open{width:100%; background-color: #3F0099; border-radius: 5px; color:white; border:1px solid #3F0099; padding: 10px 0; font-size: 18px; font-family: 'Pretendard-SemiBold';}
+.frm_input{padding: 4px 8px; font-family: 'Pretendard-Regular'; border-radius: 5px; }
+.ok_opt{display: none;}
+
+
+/* 옵션~~~ */
+.sit_opop{text-align: right;}
+.sit_opop .opt_name{margin-right: 20px;}
+.sit_opop .select{min-width: 60%;}
+.sit_opop .sel_opt{min-width: 100%;}
+.opt_wrap{display: flex; justify-content: flex-end; font-family: 'SUIT-Medium';}
+
+@media screen and (max-width: 768px) {
+.sit_pvi_big img	{width:200px;}
+	.it_option{width: 100%;}
+	.sit_opop{position: fixed; bottom: 0px; left:0px; width: 100%; z-index: 999; background-color: white; padding: 20px; border-top: 1px solid black; display: none; text-align: center;}
+
+	.it_option{font-size: 14px; padding: 4px 10px;}
+	.get_item_options label{ width: 20%; font-size: 14px;}
+	.get_item_options span{width: 80%; font-size: 14px;}
+	.get_item_options {margin-bottom: 8px;}
+	.sit_opt_subj{ margin-bottom: 5px;font-size: 14px;}
+	.frm_input{padding: 4px; font-size: 12px;}
+	.btn_frmline{font-size: 12px;}
+	.btn_delline{font-size: 12px;}
+
+	#sit_ov_btn{ margin-top: 10px;}
+
+	.sit_btn_cart{padding: 4px 0;font-size: 16px;}
+	.sit_btn_buy{padding: 4px 0; font-size: 16px;}
+	.sit_open_opt{display: block;}
+	.sit_close_opt{display: flex;}
+}
+
+@media screen and (min-width: 769px) {
+	.sit_close_opt{display: none !important;}
+	.sit_opop{display: block !important;}
+}
+.sit_close_opt{position: absolute; display: flex; justify-content: center; align-items: center;width: 15%; top: -31px; text-align: center; font-size: 20px; left: 45%; background-color: white; border: 1px solid black; border-bottom: none; cursor: pointer;}
+.selon{font-family: 'Pretendard-Regular'; font-size:18px; display: inline-block;}
+
+
+/* item_info */
+.tab_tit{display: flex; border-top:1px solid #3F0099; border-bottom: 1px solid #3F0099; border-left: 1px solid #3F0099;}
+.tab_tit li{width: 70%; border-right: 1px solid #3F0099; font-family: 'SUIT-SemiBold';}
+.tab_tit li button{width: 100%; border: none; padding: 10px 0; font-size: 18px; background-color: white;}
+.selected{ background-color: #3F0099 !important; color:white;}
+#sit_inf_explan img{max-width: 100%;}
+
+.item_info_call h3{text-align: center; font-family: 'Pretendard-SemiBold';}
+.item_info_call th{width:50%; font-size: 14px; font-family: 'Pretendard-Regular';}
+.item_info_call td{width:50%; font-size: 14px; text-align: center; font-family: 'Pretendard-Light';}
+
+@media screen and (max-width: 768px) {
+  .tab_tit li button{font-size: 14px;}
+}
+
+
+.iy table{width:100%; border-width: 0px; border-color: #D5D5D5; border-collapse: collapse; border-style: solid;}
+.iy td{width:10%; height:15px; text-align: center !important; vertical-align: middle; padding: 4px 0;}
+
+.gongsi_menu{margin-bottom: 6px; text-align: left;}
+.gongsi_menu span{background-color: #003399; color:white; font-weight: 700; padding: 8px 20px;}
+.gfee_line{background-color: #CC3D3D; color: white;}
+.head_line{background-color: #EAEAEA;}
+
+.sunyak_menu{ margin-top: 15px; margin-bottom: 6px; text-align: left;}
+.sunyak_menu span{background-color: #CC3D3D; color:white; font-weight: 700; padding: 8px 20px;}
+.sfee_line{background-color: #003399; color: white;}
+
+.info_menu{margin-top: 15px; margin-bottom: 6px; text-align: left;}
+.info_menu span{background-color: #477500; color:white; font-weight: 700; padding: 8px 20px;}
+
+.minif{font-size: 12px;}
+
+.side_opt_wrap{padding-top: 124px; text-align: right; border-left: 1px solid #EAEAEA;}
+.seleon_opt_area{margin-top: 15px; text-align: right;}
+.side_opt_mini_subject{padding: 0 20px;}
+
+.side_opt_list{padding-bottom: 20px; border-bottom: 1px solid #EAEAEA; font-family: 'SUIT-Regular';}
+.side_opt{margin-bottom: 10px;}
+.side_opt .in_subject{padding: 3px 20px;}
+.side_opt .in_select{width: 100%;}
+.side_opt .in_select select{width: 100%;}
+.choices_side_opt{margin-top: 20px;}
+
+.side_opt_subject{text-align: center; border:1px solid #3F0099; color: #3F0099; border-radius: 5px; padding: 10px; font-family: 'pt-sb';}
+.side_opt_opt_sub{font-family: 'pt-reg'; font-size: 17px; margin: 15px 0 5px 0;}
+
+.side_btn_cart{text-align: center; border: 1px solid #3F0099; background-color:white; color: #3F0099; border-radius: 5px; padding: 10px; margin-top: 10px; width:100%; font-family: 'SUIT-Bold';}
+.side_btn_buy{text-align: center; border: 1px solid #3F0099; background-color:#3F0099; color: white; border-radius: 5px; padding: 10px; margin-top: 10px; width:100%; font-family: 'SUIT-Bold';}
+
+.table_wrap{font-size: 16px; }
+.table_wrap th{font-family: 'Pretendard-Regular'; width:28%;}
+.table_wrap td{font-family: 'Pretendard-Light'; width:72%}
+@media screen and (max-width: 768px) {
+  .table_wrap{font-size: 12px; }
+}

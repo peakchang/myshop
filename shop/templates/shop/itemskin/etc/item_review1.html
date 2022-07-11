@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="write_link">
+    <a href="<?php echo G5_SHOP_URL ?>/itemuseform.php?it_id=<?php echo $it_id ?>" class="itemuse_form"><button type="button" name="button" class="write_btn"><i class="far fa-edit"></i> 글쓰기</button></a>
+
+    <a href="<?php echo G5_SHOP_URL ?>/itemuselist.php" class=""><button type="button" name="button" class="go_btn"><i class="fas fa-angle-double-right"></i> 더보기</button></a>
+  </div>
+
+
+
+  <div id="sps">
+<ul class="tab_con">
+      <li class="review_detail d-block">
+        <div class="card_header" id="headingOne">
+          <span class="fix_more">자세히 보기 <i class="fas fa-chevron-down"></i></span>
+          <div class="sit_thum"></div>
+
+          <div class="sit_info">
+            <dl class="smg item_name">
+              <dt class="inflex">
+                <div class="sps_rv_tit">
+                  상품명이요!
+                </div>
+                <div class="go_item">
+                  <a href="<?php echo $it_href ?>">
+                    <span>상품확인</span>
+                  </a>
+
+                </div>
+              </dt>
+            </dl>
+            <dl class="smg">
+              <dt>제목입니당</dt>
+            </dl>
+
+
+            <ul class="short_detail smgon">
+              <li>평점 : </li>
+              <li>
+                <span class="review_star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+               | </li>
+              <li>작성자 : </li>
+              <li><?php echo re_name($row['is_name']); ?> | </li>
+              <li>작성일 : </li>
+              <li><?php echo date('m-d',strtotime($row['is_time'])); ?></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sit_use_con">
+          <div class="sit_use_p">
+          </div>
+
+
+        <?php if( $is_reply_subject ){  //  사용후기 답변 내용이 있다면 ?>
+          <div class="sit_use_reply">
+            <div class="use_reply_icon">답변</div>
+            <div class="use_reply_tit">
+              <?php echo $is_reply_subject; // 답변 제목 ?>
+            </div>
+            <div class="use_reply_name">
+              답변자 이름 ?>
+            </div>
+            <div class="use_reply_p">
+              답변 내용
+            </div>
+          </div>
+
+      </div>
+    </li>
+
+</div>
+</div>

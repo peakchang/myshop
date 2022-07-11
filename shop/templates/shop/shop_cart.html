@@ -1,0 +1,187 @@
+{% extends 'shop_base.html' %}
+
+{% block shop_content %}
+
+<style media="screen">
+
+</style>
+
+<div id="sod_bsk" class="od_prd_list container mt-4">
+  <form name="frmcartlist" id="sod_bsk_list" method="post">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <input type="checkbox" name="ct_all" value="1" id="ct_all" checked="checked" class="selec_chk">
+        <label for="ct_all"><span></span><b>전체 선택</b></label>
+        <div class="box item_wrap">
+
+          <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
+          <input type="hidden" name="it_name[<?php echo $i; ?>]" value="<?php echo get_text($row['it_name']); ?>">
+
+          <input type="checkbox" name="ct_chk[<?php echo $i; ?>]" value="1" id="ct_chk_<?php echo $i; ?>" checked="checked" class="selec_chk onchk">
+
+          <div class="img_name">
+            <div class="cart_item_img sod_img">
+              <a href="#">
+                <img src="{{ sample_media_dir }}test_thumb.jpg" width="80" height="80" alt="">
+              </a>
+
+            </div>
+            <div class="item_name">
+              <span class="iname">카드포켓 젤리케이스</span>
+              <span class="iprice">(기본  원)</span><br>
+              <span class="sendprice"> 택배 : </span>
+            </div>
+          </div>
+          <div class="item_list">
+            <ul>
+              <li>색상 : 기본1개 (민어림ㄹ)</li>
+            </ul>
+          </div>
+          <div class="result_item mt-3">
+            <div class="chk_count"> <span>총 개</span> </div>
+            <div class="sum_price"> <span id="sell_price_<?php echo $i; ?>" class="total_prc"></span>원  </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="col-12 col-lg-4">
+
+        <div class="box reon_wrap">
+          <div id="sod_bsk_tot">
+            <ul>
+              <li class="sod_bsk_dvr">
+                <span>배송비</span><strong>49,000 원</strong>
+              </li>
+              <li class="sod_bsk_cnt">
+                <span>전체 가격</span><strong>69,000 원</strong>
+              </li>
+            </ul>
+          </div>
+
+
+          <div id="sod_bsk_act">
+            <input type="hidden" name="url" value="./orderform.php">
+            <input type="hidden" name="records" value="<?php echo $i; ?>">
+            <input type="hidden" name="act" value="">
+
+            <div class="btn_set">
+              <button type="button" onclick="return form_check('seldelete');">선택삭제</button>
+              <button type="button" onclick="return form_check('alldelete');">비우기</button>
+              <button> <a href="<?php echo shop_category_url($continue_ca_id); ?>" class="btn01"> 쇼핑 계속하기 </a></button>
+              <button type="button" onclick="return form_check('buy');" class="btn_submit">주문하기</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </form>
+</div>
+
+<script>
+  $(function() {
+    var close_btn_idx;
+
+    // 선택사항수정
+    $(".mod_options").click(function() {
+
+      var it_id = this.parentNode.parentNode.parentNode.firstElementChild.value;
+      console.log(it_id);
+      // var it_id = $(this).closest("tr").find("input[name^=it_id]").val();
+      var $this = $(this);
+      close_btn_idx = $(".mod_options").index($(this));
+
+      $.post(
+      "./cartoption.php",
+      { it_id: it_id },
+      function(data) {
+        $("#mod_option_frm").remove();
+        $this.after("<div id=\"mod_option_frm\"></div><div class=\"mod_option_bg\"></div>");
+        $("#mod_option_frm").html(data);
+        price_calculate();
+      }
+      );
+    });
+
+    // 모두선택
+    $("input[name=ct_all]").click(function() {
+      if($(this).is(":checked"))
+      $("input[name^=ct_chk]").attr("checked", true);
+      else
+      $("input[name^=ct_chk]").attr("checked", false);
+    });
+
+    // 옵션수정 닫기
+    $(document).on("click", "#mod_option_close", function() {
+      $("#mod_option_frm, .mod_option_bg").remove();
+      $(".mod_options").eq(close_btn_idx).focus();
+    });
+    $("#win_mask").click(function () {
+      $("#mod_option_frm").remove();
+      $(".mod_options").eq(close_btn_idx).focus();
+    });
+
+  });
+
+  function fsubmit_check(f) {
+    if($("input[name^=ct_chk]:checked").length < 1) {
+      alert("구매하실 상품을 하나이상 선택해 주십시오.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function form_check(act) {
+    var f = document.frmcartlist;
+    var cnt = f.records.value;
+
+    if (act == "buy")
+    {
+      if($("input[name^=ct_chk]:checked").length < 1) {
+        alert("주문하실 상품을 하나이상 선택해 주십시오.");
+        return false;
+      }
+
+      f.act.value = act;
+      f.submit();
+    }
+    else if (act == "alldelete")
+    {
+      var chkdel = confirm('삭제하시겠습니까?')
+      if(chkdel == true){
+        f.act.value = act;
+        f.submit();
+      }
+
+    }
+    else if (act == "seldelete")
+    {
+      if($("input[name^=ct_chk]:checked").length < 1) {
+        alert("삭제하실 상품을 하나이상 선택해 주십시오.");
+        return false;
+      }
+
+      var chkdel = confirm('삭제하시겠습니까?')
+      if(chkdel == true){
+        f.act.value = act;
+        f.submit();
+      }
+    }
+
+    return true;
+  }
+  </script>
+
+  {% endblock %}

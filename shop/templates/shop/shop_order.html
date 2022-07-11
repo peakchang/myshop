@@ -1,0 +1,258 @@
+{% extends 'shop_base.html' %}
+
+{% block shop_content %}
+
+
+ㄻㄴㅇㄻㅇㄹㄻㄴㅇㄻㄴㅇ
+
+<img src="" alt="">
+
+
+
+<form name="forderform" id="forderform" method="post" action="<?php echo $order_action_url; ?>" autocomplete="off">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+
+        <div class="box item_wrap">
+
+          <div class="img_name">
+            <div class="cart_item_img sod_img"><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo $image; ?></a></div>
+            <div class="item_name">
+              <span class="iname"></span>
+              <span class="iprice">(기본  원)</span><br>
+              <span class="sendprice"> 택배 : </span>
+              <div class="item_list">
+              </div>
+            </div>
+          </div>
+
+          <div class="result_item mt-3">
+            <div class="chk_count"> <span>총 개</span> </div>
+            <div class="sum_price"> <span id="sell_price_<?php echo $i; ?>" class="total_prc"></span>원  </div>
+          </div>
+        </div>
+      </tbody>
+    </table>
+
+    <!-- 주문하시는 분 입력 시작 { -->
+    <section id="sod_frm_orderer" class="box">
+      <h2>주문하시는 분</h2>
+      <div class="tbl_frm01 tbl_wrap">
+        <table class="table">
+          <tbody>
+
+            <tr>
+              <th>이름</th>
+              <td><input type="text" name="od_name" value="" id="od_name" required class="frm_input required" maxlength="20"></td>
+            </tr>
+
+
+            <tr>
+              <th>비밀번호</th>
+              <td>
+                <input type="password" name="od_pwd" id="od_pwd" required class="frm_input required" maxlength="20">
+                <span class="frm_info">영,숫자 3~20자 (주문서 조회시 필요)</span>
+              </td>
+            </tr>
+
+            <tr>
+              <th>전화번호</th>
+              <td><input type="text" name="od_tel" value="" id="od_tel" required class="frm_input required" maxlength="20"></td>
+            </tr>
+
+            <tr>
+              <th>핸드폰</th>
+              <td><input type="text" name="od_hp" value="" id="od_hp" class="frm_input" maxlength="20"></td>
+            </tr>
+
+            <tr>
+              <th>주소</th>
+              <td>
+
+                <label for="od_zip" class="sound_only">우편번호</label>
+
+                <div class="zip_line">
+                  <input type="text" name="od_zip" value="" id="od_zip" required class="frm_input required" size="8" maxlength="6" placeholder="우편번호">
+                  <button type="button" class="btn_address" onclick="win_zip('forderform', 'od_zip', 'od_addr1', 'od_addr2', 'od_addr3', 'od_addr_jibeon');">주소 검색</button>
+                </div>
+                <input type="text" name="od_addr1" value="" id="od_addr1" required class="frm_input frm_address required" placeholder="기본주소">
+                <label for="od_addr1" class="sound_only">기본주소</label><br>
+                <input type="text" name="od_addr2" value="" id="od_addr2" class="frm_input frm_address" placeholder="상세주소">
+                <label for="od_addr2" class="sound_only">상세주소</label>
+                <br>
+                <input type="text" name="od_addr3" value="" id="od_addr3" class="frm_input frm_address"  readonly="readonly" placeholder="참고항목">
+                <label for="od_addr3" class="sound_only">참고항목</label><br>
+                <input type="hidden" name="od_addr_jibeon" value="">
+              </td>
+            </tr>
+            <tr>
+              <th><label for="od_email">E-mail</label></th>
+              <td><input type="text" name="od_email" value="" id="od_email" required class="frm_input required" maxlength="100"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- } 주문하시는 분 입력 끝 -->
+
+
+  </div>
+
+
+  <style media="screen">
+
+  </style>
+  <div class="col-12 col-lg-4">
+    <div id="sod_frm" class="sod_frm_pc box">
+      <!-- 주문상품 확인 시작 { -->
+      <div class="tbl_head03 tbl_wrap od_prd_list">
+
+      </div>
+
+      <!-- } 주문상품 확인 끝 -->
+      <div class="sod_left">
+      </div>
+
+      <div class="sod_right">
+        <!-- 주문상품 합계 시작 { -->
+        <div id="sod_bsk_tot">
+          <ul>
+            <li class="sod_bsk_sell">
+              <div class="sodin_left">
+                <span>주문</span>
+              </div>
+              <div class="sodin_right">
+                <strong></strong>원
+              </div>
+            </li>
+            <hr>
+            <li class="sod_bsk_dvr">
+              <div class="sodin_left">
+                <span>배송비</span>
+              </div>
+              <div class="sodin_right">
+                <strong></strong>원
+              </div>
+            </li>
+            <hr>
+          </ul>
+        </div>
+        <style media="screen">
+
+        #sod_frm_paysel {display: flex; flex-wrap: wrap;}
+        .lb_icon{width: 50%; height: 60px; border: 1px solid #eceff4; padding-left: 60px; padding-top: 20px; margin: -1px 0 0 -1px; font-size: 14px;}
+        .lb_icon input{display: none;}
+
+        #sod_frm_paysel .bank_icon {background: url(../../media/shop_set_img/pay_icon1.png) no-repeat 13px 50% #fff;}
+        #sod_frm_paysel .vbank_icon {background: url(../../media/shop_set_img/pay_icon2.png) no-repeat 10px 50% #fff;}
+        #sod_frm_paysel .hp_icon {background: url(../../media/shop_set_img/pay_icon3.png) no-repeat 20px 50% #fff;}
+        #sod_frm_paysel .card_icon {background: url(../../media/shop_set_img/pay_icon4.png) no-repeat 13px 50% #fff;}
+
+
+        </style>
+
+        <section id="sod_frm_pay">
+          <!-- <h2>결제정보</h2> -->
+
+          <div id="od_tot_price">
+            <span class="print_price_text">총 주문금액</span>
+            <strong class="print_price"><?php echo number_format($tot_price); ?></strong>원
+          </div>
+
+
+
+          <div id="sod_frm_paysel">
+
+              <label for="od_settle_bank" class="lb_icon bank_icon pay_active">무통장입금
+                <input type="radio" id="od_settle_bank" name="set_case" class="set_case" value="무통장">
+              </label>
+
+              <label for="od_settle_vbank" class="lb_icon vbank_icon">가상계좌
+                <input type="radio" id="od_settle_vbank" name="set_case" class="set_case" value="가상계좌">
+              </label>
+
+              <label for="od_settle_hp" class="lb_icon hp_icon">휴대폰
+                <input type="radio" id="od_settle_hp" name="set_case" class="set_case" value="휴대폰">
+              </label>
+
+              <label for="od_settle_card" class="lb_icon card_icon">신용카드
+                <input type="radio" id="od_settle_card" name="set_case" class="set_case " value="신용카드">
+              </label>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="button" name="button" class="sit_btn_paygo">결제하기</button>
+            <button type="button" name="button" class="sit_btn_payno">취소하기</button>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+</form>
+<script>
+
+$('.lb_icon').click(function(){
+  $('.lb_icon').removeClass('pay_active')
+  $(this).addClass('pay_active')
+  console.log(this.firstElementChild.value);
+})
+
+$(document).scroll(function(){
+  var windowNow = document.documentElement.scrollTop
+  console.log();
+
+  if(window.innerWidth > 992){
+    var divTop = document.querySelector(".sod_frm_pc")
+    if(document.body.offsetWidth > 768){
+      if(windowNow - divTop.offsetTop > 170){
+        var setMargin = windowNow - 170
+        $(divTop).css({
+          'margin-top' : setMargin
+        })
+      }else{
+
+        if(divTop.offsetTop > 170){
+          var setMargin = windowNow - 170
+          $(divTop).css({
+            'margin-top' : setMargin
+          })
+        }
+
+      }
+    }
+  }else {
+    console.log(window.innerWidth);
+    var divTopi = document.querySelector("#sod_frm")
+    $(divTopi).css({
+      'margin' : '20px;'
+    })
+  }
+
+
+
+
+})
+
+</script>
+
+
+
+{% endblock %}

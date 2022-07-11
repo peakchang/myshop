@@ -1,0 +1,124 @@
+{% extends 'adm_base.html' %}
+
+{% block shopconfig_content %}
+
+
+<div id="layoutSidenav_content">
+  <main class="container">
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="top_fix">
+        <div class="align">
+          상품관리
+        </div>
+
+        <div class="ml-5">
+          <div class="buttons">
+            <a href="{% url 'shopconfig:itemform' %}">
+              <span class="button is-primary is-info is-small">상품등록</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="container top_margin">
+      <div class="table_wrap">
+        <div class="tablearea">
+          <table class="type08">
+            <tr>
+              <th>상품코드</th>
+              <th>이미지</th>
+              <th>상품명</th>
+              <th>분류</th>
+              <th>관리</th>
+              <th>조회수</th>
+            </tr>
+
+            {% for item, ca in all_items %}
+            <tr>
+              <td>{{ item.it_id }}</td>
+              {% if item.it_img1 %}
+              <td>
+                <img src="{{ item.it_img1.url }}" alt="" width="30">
+              </td>
+              {% else %}
+              <td>No! IMG!</td>
+              {% endif %}
+              <td>{{ item.it_name }}</td>
+              <td>
+                {% for cat in ca %}
+                {{ cat }} /
+                {% endfor %}
+              </td>
+              <td>
+                <div class="menubtns text-center">
+                  <a href="{% url 'shopconfig:itemupdate' pk=item.id %}">
+                    <button class="button is-success is-small onpp cate_update mr-1">수정</button>
+                  </a>
+
+                  <button class="button is-danger is-small cate_delete onpp mr-1">삭제</button>
+                  <button class="button is-link is-small cate_delete onpp">보기</button>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      $('.cate_add').click(function(){
+        now_caid = this.parentNode.parentNode.parentNode.firstElementChild.innerText
+        console.log(now_caid);
+        var param = {'now_caid' : now_caid}
+        $.ajax({
+          url : "{% url 'shopconfig:workajax' %}",
+          type : 'POST',
+          headers : {
+            'X-CSRFTOKEN' : '{{ csrf_token }}'
+          },
+          data : JSON.stringify(param),
+          success : function(data){
+            console.log(data)
+            window.location.reload()
+          },
+          error : function(){
+            console.log('에러다!! 에러가 났다 요기 아님???!!!')
+          }
+        })
+
+      })
+
+      $('.cate_update').click(function(){
+        update_caid = this.parentNode.parentNode.parentNode.firstElementChild.innerText
+        get_name = this.parentNode.parentNode.parentNode.children[1].firstElementChild.value
+        var param = {'update_caid' : update_caid, 'get_name': get_name}
+        $.ajax({
+          url : "{% url 'shopconfig:workajax' %}",
+          type : 'POST',
+          headers : {
+            'X-CSRFTOKEN' : '{{ csrf_token }}'
+          },
+          data : JSON.stringify(param),
+          success : function(data){
+            console.log(data)
+            window.location.reload()
+          },
+          error : function(){
+            console.log('에러다!! 에러가 났다 요기 아님???!!!')
+          }
+        })
+      })
+
+
+    </script>
+
+
+
+    {% endblock %}

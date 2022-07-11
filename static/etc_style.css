@@ -1,0 +1,107 @@
+/* 사용 후기 */
+.review_star{color: #E0B94F;}
+#sit_use_wbtn {text-align: right;}
+.tab_con{padding: 0px;}
+.review_list{padding-left: 0px;}
+.card_header{display: flex; position: relative; }
+.fix_more{position: absolute; right: 10px; bottom: 10px; padding: 5px; border: 1px solid grey; border-radius: 5px; font-family: 'Pretendard-Light'; font-size: 14px; cursor: pointer;}
+.inflex{display: flex;}
+.short_detail li{display:inline-block;}
+
+.short_detail{margin-bottom: 5px; font-family: 'Pretendard-Light'; font-size: 14px;}
+.smg{margin-bottom: 5px; font-family: 'Pretendard-Regular'; font-size: 16px;}
+.sit_info{padding: 10px 0 0 10px;}
+.review_detail{border: 1px solid grey; border-radius: 5px; margin-top: 5px;}
+.sit_use_con{border-top: 1px solid grey; padding: 20px; font-family: 'Pretendard-Regular'; font-size: 14px;}
+.sit_thum{display: flex; align-items: center; justify-content: center;}
+.item_name{font-size: 12px; font-family: 'Pretendard-Regular';}
+.sps_rv_tit{overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 300px; font-size: 16px;}
+.go_item{padding-left: 10px;}
+.go_item span{font-size: 12px; padding: 5px; background-color: #FF7171; border-radius: 5px; color:white; font-family: 'Pretendard-Regular';}
+
+.search_menu{margin-top: 25px; font-size: 16px;}
+.search_menu select{font-size: 16px;}
+.search_menu button{font-size: 16px;}
+
+.search_all {text-align: left;}
+.search_all span{padding: 8px; background-color: black; color:white; border-radius: 5px; margin-top: 10px; line-height: 38px;}
+
+.sit_use_con img{max-width: 100%;}
+.write_link{text-align: right; padding-right: 40px;}
+.write_link button {vertical-align: middle; padding: 6px 18px; border-radius: 4px; background-color: #8ab329; color: #fff; font-size: 15px; border:1px solid #8ab329; font-family: 'Pretendard-Regular';}
+
+.sit_info dt{font-weight: 100 !important;}
+
+@media screen and (max-width: 768px) {
+  .smg{font-size: 12px;}
+  .rate{width: 50px;}
+  .rate img{width: 100%;}
+  .sps_rv_tit{font-size: 14px;}
+  .go_item{font-size: 12px;}
+  .search_all{padding: 0px !important;}
+  .search_all span{font-size: 13px;}
+  .search_menu{font-size: 13px;}
+  .search_menu select{height:32px; font-size: 13px;}
+  .search_menu input{font-size: 13px;}
+  .search_menu button{font-size: 13px;}
+  .search_menu span{line-height: 34px;}
+
+  .short_detail{font-size: 12px;}
+
+  .fix_more {font-size: 10px;}
+  .sit_info {padding-bottom: 35px;}
+  .sit_info dt{font-size: 12px;}
+}
+
+/* 상품 문의 */
+
+#sit_use_wbtn {text-align: right;}
+.tab_con{padding: 0px;}
+.review_list{padding-left: 0px;}
+.card_header{display: flex; position: relative; }
+.fix_more{position: absolute; right: 10px; bottom: 10px; padding: 5px; border: 1px solid grey; border-radius: 5px; font-family: 'Pretendard-Light'; font-size: 14px; cursor: pointer;}
+.inflex{display: flex;}
+.short_detail li{display:inline-block;}
+
+.smg{margin-bottom: 5px; font-family: 'Pretendard-Light'; font-size: 16px;}
+.sit_info{padding: 10px 0 0 10px;}
+.review_detail{border: 1px solid grey; border-radius: 5px; margin-top: 5px;}
+.sit_use_con{border-top: 1px solid grey; padding: 20px; font-family: 'Pretendard-Regular'; font-size: 14px;}
+.sit_thum{display: flex; align-items: center; justify-content: center;}
+.item_name{font-size: 12px; font-family: 'Pretendard-Light';}
+.sps_rv_tit{overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 300px; font-size: 16px;}
+.go_item{padding-left: 10px;}
+.go_item span{font-size: 12px; padding: 5px; background-color: #FF7171; border-radius: 5px; color:white; font-family: 'Pretendard-Light';}
+
+.search_menu{margin-top: 25px; font-size: 16px;}
+.search_menu select{font-size: 16px;}
+.search_menu button{font-size: 16px;}
+
+.search_all {text-align: left;}
+.search_all span{padding: 8px; background-color: black; color:white; border-radius: 5px; margin-top: 10px; line-height: 38px;}
+
+.sit_use_con img{max-width: 100%;}
+.write_link {text-align: right; padding-right: 10px;}
+.write_link .write_btn {vertical-align: middle; padding: 6px 18px; border-radius: 4px; background-color: #8ab329; color: #fff; font-size: 15px; border:1px solid #8ab329; font-family: 'Pretendard-Regular';}
+
+.write_link .go_btn {vertical-align: middle; padding: 6px 18px; border-radius: 4px; background-color: #368D9C; color: #fff; font-size: 15px; border:1px solid #368D9C; font-family: 'Pretendard-Regular';}
+
+@media screen and (max-width: 768px) {
+  .smg{font-size: 12px;}
+  .rate{width: 50px;}
+  .rate img{width: 100%;}
+  .sps_rv_tit{font-size: 14px;}
+  .go_item{font-size: 12px;}
+
+  .short_detail{font-size: 12px;}
+
+  .search_menu{font-size: 13px;}
+  .search_menu select{height:32px; font-size: 13px;}
+  .search_menu input{font-size: 13px;}
+  .search_menu button{font-size: 13px;}
+  .search_menu span{line-height: 34px;}
+
+  .fix_more {font-size: 10px;}
+  .sit_info {padding-bottom: 35px;}
+  .sit_info dt{font-size: 12px;}
+}

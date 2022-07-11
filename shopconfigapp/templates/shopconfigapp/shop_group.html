@@ -1,0 +1,106 @@
+{% extends 'adm_base.html' %}
+
+{% block shopconfig_content %}
+
+
+<div id="layoutSidenav_content">
+  <main style="position: relative;">
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="top_fix" style="">
+        <div class="align">
+          분류관리
+        </div>
+
+        <div class="">
+          <div class="buttons">
+            <button class="button is-primary is-small">일괄수정</button>
+
+            <button type="submit" name="add_arate" value="addbtn" class="button is-link is-small">분류추가</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="container top_margin">
+      <div class="table_wrap">
+        <div class="tablearea">
+          <table class="type08">
+            <tr>
+              <th>분류코드</th>
+              <th>분류명</th>
+              <th>등급</th>
+              <th>관리</th>
+            </tr>
+
+            {% for cate in cate_list %}
+            <tr>
+              <td>{{ cate.ca_id }}</td>
+              <td><input class="input is-small" type="text" placeholder="분류명을 입력하세요" value="{{ cate.ca_name }}"></td>
+              <td></td>
+              <td>
+                <div class="menubtns text-center">
+                <button class="button is-link is-small onpp cate_add mr-1">추가</button>
+                <button class="button is-warning is-small onpp cate_update mr-1">수정</button>
+                <button class="button is-danger is-small cate_delete onpp">삭제</button>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      $('.cate_add').click(function(){
+        now_caid = this.parentNode.parentNode.parentNode.firstElementChild.innerText
+        console.log(now_caid);
+        var param = {'now_caid' : now_caid}
+        $.ajax({
+            url : "{% url 'shopconfig:workajax' %}",
+            type : 'POST',
+            headers : {
+                'X-CSRFTOKEN' : '{{ csrf_token }}'
+            },
+            data : JSON.stringify(param),
+            success : function(data){
+                console.log(data)
+                window.location.reload()
+            },
+            error : function(){
+                console.log('에러다!! 에러가 났다 요기 아님???!!!')
+            }
+        })
+
+      })
+
+      $('.cate_update').click(function(){
+        update_caid = this.parentNode.parentNode.parentNode.firstElementChild.innerText
+        get_name = this.parentNode.parentNode.parentNode.children[1].firstElementChild.value
+        var param = {'update_caid' : update_caid, 'get_name': get_name}
+        $.ajax({
+            url : "{% url 'shopconfig:workajax' %}",
+            type : 'POST',
+            headers : {
+                'X-CSRFTOKEN' : '{{ csrf_token }}'
+            },
+            data : JSON.stringify(param),
+            success : function(data){
+                console.log(data)
+                window.location.reload()
+            },
+            error : function(){
+                console.log('에러다!! 에러가 났다 요기 아님???!!!')
+            }
+        })
+      })
+
+
+    </script>
+
+
+
+    {% endblock %}
