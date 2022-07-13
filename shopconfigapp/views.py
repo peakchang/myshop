@@ -79,9 +79,9 @@ def in_item_form(request):
     #     return HttpResponseRedirect(reverse('shopconfig:itemlist'))
     #
     # 메인 / 서브 상세설명 에디터 생성
-    form = EditorForm()
-    context['form'] = form
-    #
+    # form = EditorForm()
+    # context['form'] = form
+    # #
     # # 상품코드 생성
     # while True:
     #     result_key = make_key()
@@ -92,17 +92,17 @@ def in_item_form(request):
     #     except:
     #         break
     # context['result_key'] = result_key
-    #
+    # #
     # # 최상위 분류값 가지고 오기 (하위 카테고리는 ajax로 찾기)
     # category_a = ShopCategory.objects.filter(ca_rate='A')
     # context['category_a'] = category_a
     #
-    # # 상품 스킨 찾기 (itemskin_) 으로 시작되는 파일
-    # shop_app_path = os.path.dirname(shop.__file__)
-    # shop_tpl_path = f'{shop_app_path}\\templates\\shop\\itemskin'
-    # file_list = os.listdir(shop_tpl_path)
-    # file_list_py = [file for file in file_list if file.startswith("itemskin_")]
-    # context['skin_list'] = file_list_py
+    # 상품 스킨 찾기 (itemskin_) 으로 시작되는 파일
+    shop_app_path = os.path.dirname(shop.__file__)
+    shop_tpl_path = f'{shop_app_path}\\templates\\shop\\itemskin'
+    file_list = os.listdir(shop_tpl_path)
+    file_list_py = [file for file in file_list if file.startswith("itemskin_")]
+    context['skin_list'] = file_list_py
     return render(request, 'shopconfigapp/in_item_form.html', context)
 
 
