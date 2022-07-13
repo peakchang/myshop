@@ -5,6 +5,7 @@
 {% load humanize %}
 
 
+
 <form name="fitem" id="fitem_form">
   {% csrf_token %}
   <div class="container mt-5">
@@ -12,6 +13,7 @@
     <input type="hidden" name="it_id" value="{{ get_item.it_id }}">
     <input type="hidden" name="get_option" class="get_option" value="">
     <input type="hidden" name="get_price" class="get_price" value="">
+
 
     <div class="row">
 
@@ -46,6 +48,7 @@
         <div class="cust_price">시중가 :	{{ get_item.it_cust_price|intcomma }} 원</div>
         {% endif %}
         <div class="sell_price">판매가 : {{ get_item.it_price|intcomma }} 원</div>
+
         <div class="send_cost">배송비 : 무료</div>
         <hr class="hr_sm">
 

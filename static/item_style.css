@@ -66,6 +66,10 @@
 
 
 
+.selon{font-family: 'Pretendard-Regular'; font-size:18px; display: inline-block;}
+
+
+
 /* item_info */
 .tab_tit{display: flex; border-top:1px solid #3F0099; border-bottom: 1px solid #3F0099; border-left: 1px solid #3F0099;}
 .tab_tit li{width: 70%; border-right: 1px solid #3F0099; font-family: 'SUIT-SemiBold';}
