@@ -101,7 +101,7 @@ def in_item_form(request):
     shop_app_path = os.path.dirname(shop.__file__)
 
     BASE_DIR = Path(__file__).resolve().parent.parent
-    shop_tpl_path = f'{BASE_DIR}\\shop\\templates\\shop\\itemskin'
+    shop_tpl_path = f'{BASE_DIR}/shop/templates/shop/itemskin'
     print(shop_tpl_path)
 
     file_list = os.listdir(shop_tpl_path)
