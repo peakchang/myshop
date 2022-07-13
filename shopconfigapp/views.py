@@ -99,10 +99,11 @@ def in_item_form(request):
     #
     # 상품 스킨 찾기 (itemskin_) 으로 시작되는 파일
     shop_app_path = os.path.dirname(shop.__file__)
-    shop_tpl_path = f'{shop_app_path}\\templates\\shop\\itemskin'
-    file_list = os.listdir(shop_tpl_path)
-    file_list_py = [file for file in file_list if file.startswith("itemskin_")]
-    context['skin_list'] = file_list_py
+    context['chk_path'] = shop_app_path
+    # shop_tpl_path = f'{shop_app_path}\\templates\\shop\\itemskin'
+    # file_list = os.listdir(shop_tpl_path)
+    # file_list_py = [file for file in file_list if file.startswith("itemskin_")]
+    # context['skin_list'] = file_list_py
     return render(request, 'shopconfigapp/in_item_form.html', context)
 
 

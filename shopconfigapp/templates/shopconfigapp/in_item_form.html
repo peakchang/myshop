@@ -6,6 +6,7 @@
 <div id="layoutSidenav_content">
   <main style="position: relative;" class="container">
 
+    {{ chk_path }}
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="hidden" name="act_val" value="insert">
