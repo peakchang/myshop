@@ -17,7 +17,7 @@ import shop
 
 def in_item_form(request):
     context = {}
-    return render(request, 'shopconfigapp/item_form.html', context)
+    return render(request, 'shopconfigapp/in_item_form.html', context)
 
 
 def item_form(request):
