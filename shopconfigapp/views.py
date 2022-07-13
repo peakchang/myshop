@@ -17,6 +17,92 @@ import shop
 
 def in_item_form(request):
     context = {}
+
+    if request.method == "POST":
+        get_id = request.POST.get('it_id')
+        if request.POST.get('act_val') == 'insert':
+            shop_item = ShopItem()
+            shop_item.it_id = get_id
+        else:
+            shop_item = ShopItem.objects.get(it_id=get_id)
+
+        get_checked = request.POST.get('it_use')
+        if get_checked is None:
+            get_checked = 'False'
+        shop_item.it_use = get_checked
+
+        get_checked = request.POST.get('it_main_item')
+        if get_checked is None:
+            get_checked = 'False'
+        shop_item.it_main_item = get_checked
+
+        get_list = ['ca_id', 'ca_id2', 'ca_id3', 'it_skin', 'it_name', 'it_sub_name', 'it_depend_item',
+                    'it_co_type', 'it_info', 'it_cust_price', 'it_price', 'it_option', 'it_naver_category',
+                    'it_color', 'it_color_code']
+        for get in get_list:
+            if request.POST.get(f'{get}'):
+                setattr(shop_item, get, request.POST.get(get))
+
+        tong_list = ['sk', 'kt', 'lg']
+        for tong in tong_list:
+            tong_get_list = [f'it_{tong}_fprice', f'it_{tong}_capa', f'it_{tong}_gongsi', f'it_{tong}_new_dc',
+                             f'it_{tong}_mnp_g_dc', f'it_{tong}_mnp_s_dc', f'it_{tong}_gib_g_dc', f'it_{tong}_gib_s_dc']
+            for tong_get in tong_get_list:
+                if request.POST.get(f'{tong_get}'):
+                    setattr(shop_item, tong_get, request.POST.get(tong_get))
+
+        # 이미지 저장
+        for i in range(1, 10):
+            temp_name = f'it_img{i}'
+            pre_img = getattr(shop_item, temp_name)
+            new_img = request.FILES.get(temp_name)
+            if pre_img and new_img:
+                os.remove(pre_img.path)
+                setattr(shop_item, temp_name, request.FILES.get(temp_name))
+            elif not pre_img and new_img:
+                setattr(shop_item, temp_name, request.FILES.get(temp_name))
+            elif pre_img and not new_img:
+                pass
+
+        # 상품 설명 에디터 UP
+        form = EditorForm(request.POST)
+        # if form.is_valid():
+        #     form.it_explain = form.cleaned_data('it_explain')
+        #     form.it_explain = form.cleaned_data('it_sub_explain')
+
+        if request.POST.get('it_explain'):
+            shop_item.it_explain = request.POST.get('it_explain')
+        if request.POST.get('it_sub_explain'):
+            shop_item.it_sub_explain = request.POST.get('it_sub_explain')
+
+        shop_item.save()
+        return HttpResponseRedirect(reverse('shopconfig:itemlist'))
+
+    # 메인 / 서브 상세설명 에디터 생성
+    form = EditorForm()
+    context['form'] = form
+
+    # 상품코드 생성
+    while True:
+        result_key = make_key()
+        try:
+            chk_key = ShopItem.objects.get(it_id=result_key)
+            if chk_key:
+                result_key = make_key()
+        except:
+            break
+    context['result_key'] = result_key
+
+    # 최상위 분류값 가지고 오기 (하위 카테고리는 ajax로 찾기)
+    category_a = ShopCategory.objects.filter(ca_rate='A')
+    context['category_a'] = category_a
+
+    # 상품 스킨 찾기 (itemskin_) 으로 시작되는 파일
+    shop_app_path = os.path.dirname(shop.__file__)
+    shop_tpl_path = f'{shop_app_path}\\templates\\shop\\itemskin'
+    file_list = os.listdir(shop_tpl_path)
+    file_list_py = [file for file in file_list if file.startswith("itemskin_")]
+    context['skin_list'] = file_list_py
     return render(request, 'shopconfigapp/in_item_form.html', context)
 
 
