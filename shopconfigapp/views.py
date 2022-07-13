@@ -78,9 +78,9 @@ def in_item_form(request):
     #     shop_item.save()
     #     return HttpResponseRedirect(reverse('shopconfig:itemlist'))
     #
-    # # 메인 / 서브 상세설명 에디터 생성
-    # form = EditorForm()
-    # context['form'] = form
+    # 메인 / 서브 상세설명 에디터 생성
+    form = EditorForm()
+    context['form'] = form
     #
     # # 상품코드 생성
     # while True:
