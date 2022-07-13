@@ -1,0 +1,153 @@
+<body>
+
+  <div class="top_menu">
+    <div class="container">
+      <div class="submenu_list">
+        <a href=""><span>구매후기</span></a>
+
+
+        <span class="div_bar"> | </span>
+        <a href=""><span>공지사항</span></a>
+
+        {% if request.user.is_authenticated %}
+        <span class="div_bar"> | </span>
+        <a href="{% url 'accountapp:logout' %}"><span>로그아웃</span></a>
+        {% else %}
+        <span class="div_bar"> | </span>
+        <a href="{% url 'accountapp:login' %}"><span>로그인</span></a>
+        {% endif %}
+
+
+
+
+
+        <!-- <span class="div_bar"> | </span>
+        <a href=""><span>MY/주문조회</span></a> -->
+
+
+        <!-- <span class="div_bar"> | </span>
+        <a href=""><span>관리자</span></a> -->
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="pchead">
+    <form id="frmsearch1" name="frmsearch1" action="<?php echo G5_SHOP_URL; ?>/search.php">
+      <div class="head_area row pt-3 pb-2">
+        <div class="logo_area col-md-3 col-4">
+          <a href="{% url 'home' %}">
+            <img src="{{ shop_base.logo_img.url }}" alt="" class="w-100">
+          </a>
+        </div>
+        <div class="search_area col-md-6 offset-md-3 col-7 offset-1">
+          <div class="control has-icons-right headsearch">
+            <input class="input is-normal headinput is-rounded" type="text" placeholder="검색" name="q" value="">
+            <span class="icon is-right">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+
+  <div class="m_menutop d-block">
+
+    <div class="fixleft"><i class="fas fa-chevron-left"></i></div>
+    <div class="fixright"><i class="fas fa-chevron-right"></i></div>
+    <div class="mmenuline">
+
+      <ul class="menu_ul">
+        <li class=""><a href=""><span>자급제폰</span></a></li>
+        <li class=""><a href=""><span>케이스 / 필름</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+
+  <script type="text/javascript">
+    // 검색버튼 강제 입력
+    $('.headinput').click(function(){
+      var frmsearch1 = document.querySelector('#frmsearch1')
+      console.log(this);
+      if(this.value){
+        frmsearch1.submit()
+        if(this.value.length < 2){
+          alert("검색어는 두글자 이상 입력하십시오.");
+          return false;
+        }
+      }
+    })
+
+    var fineLi = document.querySelectorAll('.menu_ul li');
+
+    ul_width = 0;
+    for (var i = 0; i < fineLi.length; i++) {
+      var ul_width = ul_width + fineLi[i].offsetWidth
+      if(fineLi[i].className == "selmen" && i > 2){
+        var xnum = i * 12;
+        console.log(i);
+        $('.mmenuline').scrollLeft(Number(i) * xnum);
+      }
+    }
+
+    window.onresize = function(event){
+      var innerWidth = window.innerWidth;
+      var menu_ul = document.querySelector('.menu_ul');
+
+      if(innerWidth <= ul_width){
+        menu_ul.style.width = ul_width + "px"
+        menu_ul.style.justifyContent = "flex-start"
+        $('.fixright').show()
+      }else{
+        menu_ul.style.width = "100%";
+        menu_ul.style.justifyContent = "center"
+        $('.fixright').hide()
+      }
+    }
+
+
+    moveScroll('.fixleft','.fixright','.mmenuline','.menu_ul');
+
+    function moveScroll(fixleft,fixright,mmenuline,scrollthis){
+      $(fixleft).hide()
+      $(mmenuline).scroll(function(){
+        if($(this).scrollLeft() == 0){// 스크롤이 0일 때
+          $(fixleft).hide()
+          $(fixright).show()
+        }else if (Math.ceil($(this).scrollLeft() + $(this).width()) >= $(scrollthis).width()) {
+          //스크롤이 끝에 왔을 때
+          $(fixleft).show()
+          $(fixright).hide()
+        }else{
+          $(fixleft).show()
+          $(fixright).show()
+        }
+      })
+
+
+      $(fixleft).click(function(){
+        var _scrollX = $(mmenuline).scrollLeft();
+        $(mmenuline).animate({
+          scrollLeft : _scrollX - 1000
+        },300)
+        // $('.mmenuline').scrollLeft(_scrollX - 1000);
+      })
+      $(fixright).click(function(){
+        var _scrollX = $(mmenuline).scrollLeft();
+
+        $(mmenuline).animate({
+          scrollLeft : _scrollX + 1000
+        },300)
+        // $('.mmenuline').scrollLeft(_scrollX + 1000);
+      })
+    }
+  </script>

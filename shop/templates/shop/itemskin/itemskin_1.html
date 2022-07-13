@@ -1,0 +1,128 @@
+{% extends 'shop_base.html' %}
+
+{% block shop_content %}
+
+{% load humanize %}
+
+
+<form name="fitem" id="fitem_form">
+  {% csrf_token %}
+  <div class="container mt-5">
+
+    <input type="hidden" name="it_id" value="{{ get_item.it_id }}">
+    <input type="hidden" name="get_option" class="get_option" value="">
+    <input type="hidden" name="get_price" class="get_price" value="">
+
+    <div class="row">
+
+      <div class="col-12 col-lg-5">
+        <div class="sit_pvi">
+          <div class="sit_pvi_big">
+            {% for i, img in img_list %}
+            {% if i == 1 %}
+            <div class="large_thumbimg"><img src="{{ img }}" alt=""></div>
+            {% else %}
+            <div class="large_thumbimg" style='display: none;'><img src="{{ img }}" alt=""></div>
+            {% endif %}
+            {% endfor %}
+
+
+          </div>
+          <ul id="sit_pvi_thumb">
+            {% for img in th_img_list %}
+            <li><img src="{{ img }}" alt="" width="70" height="70"></li>
+            {% endfor %}
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7">
+
+        <div class="sit_title">{{ get_item.it_name }}</div>
+
+        <hr class="hr_sm">
+        {% if get_item.it_cust_price %}
+        <div class="cust_price">시중가 :	{{ get_item.it_cust_price|intcomma }} 원</div>
+        {% endif %}
+        <div class="sell_price">판매가 : {{ get_item.it_price|intcomma }} 원</div>
+        <div class="send_cost">배송비 : 무료</div>
+        <hr class="hr_sm">
+
+        <div class="sit_opop">
+
+          <div class="sit_close_opt">
+            <div><i class="fa-solid fa-circle-chevron-down"></i></div>
+          </div>
+
+          <div class="opt_list">
+          </div>
+
+          <section id="sit_sel_option">
+            <span class="no_opt">옵션을 선택하세요</span>
+
+            <div class="ok_opt">
+            </div>
+          </section>
+
+
+
+          <hr class="hr_sm">
+          <div id="sit_tot_price"></div>
+
+          <div id="sit_ov_btn">
+            <!-- <button type="button" value="주문하기" class="sit_btn_cart">장바구니</button> -->
+            <button type="button" value="주문하기" class="sit_btn_buy">주문하기</button>
+          </div>
+        </div>
+
+        <div class="sit_open_opt">
+          <button type="button" class="sit_btn_open">구매하기</button>
+        </div>
+
+        <script type="text/javascript">
+          $('.sit_btn_open').click(function(){
+            $('.sit_open_opt').hide()
+            $('.sit_opop').show()
+          })
+
+          $('.sit_close_opt').click(function(){
+            $('.sit_open_opt').show()
+            $('.sit_opop').hide()
+          })
+        </script>
+
+      </div>
+
+    </div>
+    <!-- 상품이미지 미리보기 시작 { -->
+
+    <!-- } 상품이미지 미리보기 끝 -->
+  </div>
+<script type="text/javascript">
+
+  $('#sit_pvi_thumb li').click(function(){
+    var imgIndex = $(this).index();
+    var large_img = document.querySelectorAll('.large_thumbimg');
+    console.log(large_img);
+    $(large_img).hide()
+    $(large_img[imgIndex]).show()
+
+  })
+
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+
+</script>
+
+{% include 'shop/itemskin/item_info/it_info1.html' with test=test %}
+
+{% endblock %}

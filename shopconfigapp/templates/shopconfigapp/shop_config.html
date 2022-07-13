@@ -1,0 +1,106 @@
+{% extends 'adm_base.html' %}
+
+{% block shopconfig_content %}
+
+<div id="layoutSidenav_content">
+  <main>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="top_fix">
+        <div class="align">
+          쇼핑몰 설정
+        </div>
+
+        <div class="ml-5">
+          <div class="buttons">
+            <button type="submit" name="button" class="button is-primary is-info is-small">변경하기</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container" style="margin-top:80px;">
+        <table class="type07">
+          <tr>
+            <th>로고</th>
+            <td>
+              <div class="file has-name">
+                <label class="file-label">
+                  <input class="file-input upload_img" type="file" name="logo_img">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      로고이미지
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    이미지를 업로드 해주세요
+                  </span>
+                </label>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>배너 PC1</th>
+              <td>
+                <div class="file has-name">
+                  <label class="file-label">
+                    <input class="file-input upload_img" type="file" name="pc_banner_1">
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        배너1 PC
+                      </span>
+                    </span>
+                    <span class="file-name">
+                      이미지를 업로드 해주세요
+                    </span>
+                  </label>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+            <th>배너 모바일1</th>
+              <td>
+                <div class="file has-name">
+                  <label class="file-label">
+                    <input class="file-input upload_img" type="file" name="mobile_banner_1">
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        배너1 모바일
+                      </span>
+                    </span>
+                    <span class="file-name">
+                      이미지를 업로드 해주세요
+                    </span>
+                  </label>
+                </div>
+              </td>
+          </tr>
+
+        </table>
+      </div>
+
+      <input type="hidden" name="test" value="dfdddddddddddddddddddddddd">
+    </form>
+
+
+    <script type="text/javascript">
+      $('.upload_img').change(function(e){
+        var file = this.files[0]
+        this.nextElementSibling.nextElementSibling.innerText = file.name
+      })
+    </script>
+
+    {% endblock %}

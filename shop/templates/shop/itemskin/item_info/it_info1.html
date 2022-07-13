@@ -1,0 +1,388 @@
+
+<section id="sit_info" class="container mt-5">
+  <div id="sit_tab">
+    <ul class="tab_tit mb-3">
+      <li><button type="button" rel="#sit_inf" class="selected">상품정보</button></li>
+      <li><button type="button" rel="#sit_use">사용후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
+      <li><button type="button" rel="#sit_qa">상품문의  <span class="item_qa_count"><?php echo $item_qa_count; ?></span></button></li>
+      <li><button type="button" rel="#sit_dex">배송/교환</button></li>
+    </ul>
+
+    <div class="row">
+      <ul class="tab_con col-12 col-lg-9">
+        <!-- 상품 정보 시작 { -->
+        <li id="sit_inf">
+          <div class="container">
+            {{ get_item.it_explain|safe }}
+          </div>
+
+        </li>
+        <!-- 사용후기 시작 { -->
+        <li id="sit_use">
+          <div id="itemuse" class="mt-5">
+            {% include 'shop/itemskin/etc/item_review1.html' with test=test %}
+          </div>
+        </li>
+        <!-- } 사용후기 끝 -->
+
+        <!-- 상품문의 시작 { -->
+        <li id="sit_qa">
+          <div id="itemqa">
+            {% include 'shop/itemskin/etc/item_ask1.html' with test=test %}
+          </div>
+        </li>
+        <!-- } 상품문의 끝 -->
+
+        <!-- 배송/교환 시작 { -->
+        <li id="sit_dex">
+          <div class="col-12 col-md-10 col-lg-9 mx-auto table_wrap">
+            <table class="table">
+              <tr>
+                <th>지정 택배사</th>
+                <td>로젠택배 / 우체국택배</td>
+              </tr>
+              <tr>
+                <th>배송기간</th>
+                <td>주문 후 평균 2일 이내 (도서 산간 지역시 7일 이내)</td>
+              </tr>
+              <tr>
+                <th>배송비11111</th>
+                <td>10만원 미만 2,500원 / 이상 무료</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 배송비</th>
+                <td>반품시 : 편도 3,500원 / 교환비 : 7,000원</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 기간</th>
+                <td>단숨변심 시 교환 및 반품 7일 이내</td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 불가 사유</th>
+                <td>
+                  1. 교환 및 반품 기간이 지난 경우<br>
+                  2. 구매자의 책임으로 상품의 분실 또는 훼손된 경우<br>
+                  3. 고객의 요청사항에 맞춰 제작에 들어가는 맞춤 제작의 경우
+                </td>
+              </tr>
+              <tr>
+                <th>교환 / 반품 배송지</th>
+                <td>경기도 부천시 성주로 86-4 102동 901호</td>
+              </tr>
+
+            </table>
+          </div>
+
+        </ul>
+
+        <div class="d-none d-lg-block col-3 side_opt_wrap">
+
+          <div class="side_opt_list">
+
+
+
+
+
+
+          </div>
+
+          <div class="choices_side_opt">
+            <span class="no_opt">옵션을 선택하세요111</span>
+            <div class="ok_opt"></div>
+          </div>
+
+          <div class="">
+            <!-- <button type="button" name="button" class="sit_btn_cart w-100">장바구니</button> -->
+            <button type="button" name="button" class="sit_btn_buy w-100 mt-3">주문하기</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </form>
+
+
+  <script type="text/javascript">
+
+    $('.sit_btn_cart').click(function(){
+      var form = document.querySelector('#fitem_form')
+      form.method = 'POST';
+      form.action = '{% url "shop:shopcart" %}'
+      form.submit()
+    })
+
+    $('.sit_btn_buy').click(function(){
+
+      if(!document.querySelector('.get_option').value){
+        alert('옵션을 선택해주세요')
+        return false;
+      }
+      var form = document.querySelector('#fitem_form')
+      form.method = 'POST';
+      form.action = '{% url "shop:shoporder" %}'
+      form.submit()
+    })
+
+    it_opt_list = '{{ get_item.it_option | safe }}'
+    var it_opt = JSON.parse(it_opt_list)
+    get_num = 0;
+    while (true){
+      console.log(it_opt.item_opt[get_num].opt_name);
+      get_num++
+      if(it_opt.item_opt[get_num].opt_name == ''){
+        console.log('브레잌!!');
+        get_num--
+        break
+      }
+
+      if(get_num == 2){
+        break
+      }
+    }
+    console.log(get_num);
+
+    // 기본 옵션 구하기 (첫번째거 선택한 뒤에 두번째거 옵션이 생길수 있도록 수정 합시다! (PG사가 먼저임))
+
+    if(it_opt_list){
+      var it_opt = JSON.parse(it_opt_list)
+
+      for (var i = 0; i < it_opt.item_opt.length; i++) {
+        var inum = i + 1;
+
+
+        if(it_opt.item_opt[i].opt_name){
+          get_item_option_wrap(it_opt, i, get_num)
+        }
+
+
+      }
+    }
+
+
+
+    $(document).change(function(e){
+      var it_opt = JSON.parse(it_opt_list)
+      if(e.target.classList.contains('sel_opt')){
+
+        var opt_list = document.querySelector('.opt_list')
+        var side_opt_list = document.querySelector('.side_opt_list')
+
+        if ($(e.target.parentNode.parentNode).hasClass('item_div'+opt_list.children.length)){
+
+          // 마지막 옵션값 기준 다른 옵션 값 맞추기
+          $('.item_div'+opt_list.children.length+' .sel_opt').val(e.target.value).prop('selected', true)
+
+          // 값을 찾아서 금액 조정 하기
+          var chk_val = ''
+          var get_val_list = document.querySelectorAll('.opt_list .sel_opt')
+          for (var p = 0; p < get_val_list.length; p++) {
+            if(p == 0){
+              var chk_val = chk_val + get_val_list[p].value
+            }else{
+              var chk_val = chk_val + "|" + get_val_list[p].value
+            }
+          }
+
+
+
+          // 추가 금액 구하기
+          var it_opt = JSON.parse(it_opt_list)
+          for (var s = 0; s < it_opt['item_val'].length; s++) {
+            if(it_opt['item_val'][s]['opt_key'] == chk_val){
+              var add_opt_price = Number(it_opt['item_val'][s]['opt_val'])
+            }
+          }
+
+          // 옵션 선택 완료, 최종 결제값 구하기, 값 넣기
+
+          var base_price = document.querySelector('.sell_price').innerText
+          var regex = /[^0-9]/g;
+          var on_base_price = base_price.replace(regex, "");
+          var set_price = Number(on_base_price) + add_opt_price
+          console.log(set_price);
+
+          var set_opt = chk_val.split('|')
+          var set_opt = set_opt.toString();
+          var set_opt = set_opt.replace(/,/g," / ")
+          console.log(set_opt);
+
+          document.querySelector('.get_price').value = set_price
+          document.querySelector('.get_option').value = set_opt
+
+          var set_name = '{{ get_item.it_name }}'
+
+          console.log(set_price);
+          console.log(set_opt);
+          console.log(set_name);
+
+
+          var get_template = '<span class="sel_model">'+set_name + '('+ set_opt +')</span><span class="sel_price">'+ addComma(set_price) +' 원</span><br>'
+          console.log(get_template);
+
+          $('.ok_opt').append(get_template)
+          $('.ok_opt').show()
+          $('.no_opt').hide()
+
+
+
+
+          // 마지막 옵션 선택시 모든 옵션값 초기화
+          for (var t = 1; t < 4; t++) {
+            var reset_cm = document.querySelector('.item_div'+t+' .opt_name')
+            if(reset_cm){
+              var set_name = reset_cm.innerText
+              $('.item_div'+t+' .sel_opt').val(set_name+'을 선택하세요').prop('selected', true)
+              if(t != 1){
+                $('.item_div'+t+' .sel_opt').attr('disabled', true)
+                var get_reset_opt = document.querySelectorAll('.item_div'+t+' .sel_opt');
+                for (var ii = 0; ii < get_reset_opt.length; ii++) {
+                  $(get_reset_opt[ii]).children('option:not(:first)').remove();
+                }
+              }
+            }
+          }
+
+        }else{
+          if($(e.target.parentNode.parentNode).hasClass('item_div1')){
+
+            $('.item_div1 .sel_opt').val(e.target.value).prop('selected', true)
+            $('.item_div2 select').attr('disabled', false)
+
+            if(get_num == 1){
+              var options = get_item_option(it_opt, 1, 1)
+            }else {
+              var options = get_item_option(it_opt, 1)
+            }
+            $('.item_div2 select').append(options)
+
+
+          }else if ($(e.target.parentNode.parentNode).hasClass('item_div2')) {
+
+            $('.item_div2 .sel_opt').val(e.target.value).prop('selected', true)
+            $('.item_div3 select').attr('disabled', false)
+
+            if(get_num == 2){
+              var options = get_item_option(it_opt, 2, 1)
+            }else {
+              var options = get_item_option(it_opt, 2)
+            }
+            $('.item_div3 select').append(options)
+          }
+        }
+      }
+    })
+
+
+
+
+
+
+    $(function (){
+      $(".tab_con>li").hide();
+      $(".tab_con>li:first").show();
+      $(".tab_tit li button").click(function(){
+        $(".tab_tit li button").removeClass("selected");
+        $(this).addClass("selected");
+        $(".tab_con>li").hide();
+        $($(this).attr("rel")).show();
+      });
+    });
+
+    $(document).scroll(function(){
+      var windowNow = document.documentElement.scrollTop
+      var divTop = document.querySelector(".side_opt_wrap")
+
+      if(windowNow > 720){
+        var setMargin = windowNow - 650
+
+        $(divTop).css({
+          'padding-top' : setMargin
+        })
+      }
+    })
+
+    function get_item_option_wrap(itemopt, i, o=0){
+
+      var inum = i + 1;
+      var opt_cate_list = itemopt.item_opt[i].opt_cate.split(',')
+      var opt_template = '';
+
+      if(i == 0){
+        if(get_num == 0){
+          var opt_template = get_item_option(itemopt, i, 1)
+        }else{
+          var opt_template = get_item_option(itemopt, i)
+        }
+      }
+      var get_disabled = '';
+      if(i != 0){
+        var get_disabled = 'disabled';
+      }
+      var template = "<div class='opt_wrap item_div"+inum+" mb-3'><span class='align opt_name'>"+itemopt.item_opt[i].opt_name+"</span><div class='select is-rounded'><select class='sel_opt' "+ get_disabled +"><option>"+itemopt.item_opt[i].opt_name+"을 선택하세요</option>"+opt_template+"</select></div></div>"
+
+      var side_template = '<div class="side_opt item_div'+inum+'"><div class="in_subject">'+itemopt.item_opt[i].opt_name+'</div><div class="select is-rounded in_select"><select class="sel_opt" '+ get_disabled +'><option>'+itemopt.item_opt[i].opt_name+'을 선택하세요</option>'+opt_template+'</select></div></div>'
+
+      $('.opt_list').append(template)
+      $('.side_opt_list').append(side_template)
+    }
+
+
+    function get_item_option(itemopt, i, last_opt=0){
+      var pre_num = i - 1;
+      var get_pre_pre_val = $('.item_div'+pre_num+' select').val()
+
+      if(get_pre_pre_val){
+        var get_pre_pre_val = get_pre_pre_val + "|"
+      }else {
+        var get_pre_pre_val = ""
+      }
+
+      var get_pre_val = $('.item_div'+i+' select').val()
+      if(get_pre_val){
+        var get_pre_val = get_pre_val + "|"
+      }else {
+        var get_pre_val = ""
+      }
+
+      if(get_pre_pre_val){
+        var get_pre_val = get_pre_pre_val + get_pre_val
+      }
+
+      var inum = i + 1;
+
+      var opt_cate_list = itemopt.item_opt[i].opt_cate.split(',')
+      var opt_template = '';
+
+      if(last_opt != 0){
+        for (var k = 0; k < opt_cate_list.length; k++) {
+          var get_val = ''
+          for (var v = 0; v < itemopt.item_val.length; v++) {
+            var chkone = get_pre_val+opt_cate_list[k]
+            var chktwo = itemopt.item_val[v].opt_key
+            if(chkone == chktwo){
+              var get_add_price = " (+"+ itemopt.item_val[v].opt_val +")"
+            }
+          }
+          var add_opt_template = '<option value='+opt_cate_list[k]+'>'+opt_cate_list[k]+get_add_price+'</option>'
+          var opt_template = opt_template + add_opt_template
+        }
+      }else {
+        for (var k = 0; k < opt_cate_list.length; k++) {
+          var add_opt_template = '<option value='+opt_cate_list[k]+'>'+opt_cate_list[k]+'</option>'
+          var opt_template = opt_template + add_opt_template
+        }
+      }
+
+      return opt_template
+    }
+
+
+    function addComma(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+  </script>

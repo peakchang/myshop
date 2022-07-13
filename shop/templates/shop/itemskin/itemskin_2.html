@@ -1,0 +1,150 @@
+{% extends 'shop_base.html' %}
+
+{% block shop_content %}
+
+
+<form name="fitem" method="post" action="">
+  <div class="container mt-5">
+
+    <input type="hidden" name="it_id" value="">
+    <input type="hidden" name="pre_tong" value="">
+    <input type="hidden" name="po_tong" value="">
+    <input type="hidden" name="po_yog" value="" class="po_yog">
+    <input type="hidden" name="sel_color_num" value="" class="sel_color_num">
+
+    <div class="row">
+
+      <div class="col-12 col-lg-5">
+        <div class="sit_pvi">
+          <div class="sit_pvi_big">
+            <div class="large_thumbimg">
+              <img src="{{ sample_media_dir }}test_thumb.jpg" alt="">
+            </div>
+
+          </div>
+          <ul id="sit_pvi_thumb">
+            <li>
+              <img src="{{ sample_media_dir }}test_thumb.jpg" alt="" width="70" height="70">
+            </li>
+            <li>
+              <img src="{{ sample_media_dir }}test_thumb.jpg" alt="" width="70" height="70">
+            </li>
+            <li>
+              <img src="{{ sample_media_dir }}test_thumb.jpg" alt="" width="70" height="70">
+            </li>
+            <li>
+              <img src="{{ sample_media_dir }}test_thumb.jpg" alt="" width="70" height="70">
+            </li>
+
+          </ul>
+
+
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7">
+
+        <div class="sit_title"><?php echo stripslashes($it['it_name']); ?></div>
+
+        <hr class="hr_sm">
+        <div class="cust_price">시중가 :	있으면</div>
+        <div class="sell_price">판매가 : 59,000</div>
+        <div class="send_cost">배송비 : 무료</div>
+        <hr class="hr_sm">
+
+        <div class="sit_opop">
+
+          <div class="sit_close_opt">
+            <div><i class="fa-solid fa-circle-chevron-down"></i></div>
+          </div>
+
+          <div class="opt_list">
+          </div>
+
+          <section id="sit_sel_option">
+            <span class="no_opt">옵션을 선택하세요</span>
+
+            <div class="ok_opt">
+              <span class="selon sel_model">갤럭시S22 울트라</span> | <span class="selon sel_hyuh">공시지원 할인</span> | <span class="selon sel_yog">베이직초이스</span> | <span class="selon sel_halwon">1,199,000원</span>
+            </div>
+          </section>
+
+
+
+          <hr class="hr_sm">
+          <div id="sit_tot_price"></div>
+
+          <div id="sit_ov_btn">
+            <button type="submit" onclick="document.pressed=this.value;" value="주문하기" class="sit_btn_buy">주문하기</button>
+          </div>
+        </div>
+
+        <div class="sit_open_opt">
+          <button type="button" class="sit_btn_open">구매하기</button>
+        </div>
+
+        <script type="text/javascript">
+          $('.sit_btn_open').click(function(){
+            $('.sit_open_opt').hide()
+            $('.sit_opop').show()
+          })
+
+          $('.sit_close_opt').click(function(){
+            $('.sit_open_opt').show()
+            $('.sit_opop').hide()
+          })
+        </script>
+
+      </div>
+
+    </div>
+    <!-- 상품이미지 미리보기 시작 { -->
+
+    <!-- } 상품이미지 미리보기 끝 -->
+  </div>
+</form>
+<script type="text/javascript">
+
+  $('#sit_pvi_thumb li').click(function(){
+    var imgIndex = $(this).index();
+    var large_img = document.querySelectorAll('.large_thumbimg');
+    console.log(large_img);
+    $(large_img).hide()
+    $(large_img[imgIndex]).show()
+
+  })
+</script>
+
+
+
+<script type="text/javascript">
+
+  // 기본 옵션 구하기
+  var it_opt_list = '{{ get_item.it_option | safe }}'
+  if(it_opt_list){
+    var it_opt = JSON.parse(it_opt_list)
+
+
+    for (var i = 0; i < it_opt.item_opt.length; i++) {
+      var inum = i + 1;
+
+      if(it_opt.item_opt[i].opt_name){
+        var opt_cate_list = it_opt.item_opt[i].opt_cate.split(',')
+        var opt_template = '';
+
+        for (var k = 0; k < opt_cate_list.length; k++) {
+          var add_opt_template = '<option value='+opt_cate_list[k]+'>'+opt_cate_list[k]+'</option>'
+          var opt_template = opt_template + add_opt_template
+        }
+        var template = "<div class='opt_wrap item_div"+inum+" mb-3'><span class='align opt_name'>"+it_opt.item_opt[i].opt_name+"</span><div class='select is-rounded'><select class='sel_opt'><option>"+it_opt.item_opt[i].opt_name+"을 선택하세요</option>"+opt_template+"</select></div></div>"
+
+        $('.opt_list').append(template)
+      }
+    }
+  }
+
+</script>
+
+{% include 'shop/itemskin/item_info/it_info1.html' with test=test %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+
+{% load humanize %}
+
+<div class="list_10_skin container mt-5">
+  <ul class="row skin10_ul">
+
+    {% for v in val %}
+    <li class="col-6 col-md-4 col-lg-3 skin10_item">
+      <div class="item_box">
+        <a href="{% url 'shop:shop_item' id=v.it_id %}">
+          <div class="item_img">
+            {% if v.it_img1 %}
+            <img src="{{ v.it_img1.url }}" alt="">
+            {% endif %}
+          </div>
+          <div class="textin main_item_name">
+            {{ v.it_name }}
+          </div>
+          <div class="textin item_fee">
+            가격 : <span class="onfee">{{ v.it_price|intcomma  }}</span> 원
+          </div>
+        </a>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 goitem">
+            <a href="{% url 'shop:shop_item' id=v.it_id %}">
+              <button type="button" name="button" class="">상품확인</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+
+  $('.item_box').hover(function(){
+    var hoverItem = this.lastElementChild.lastElementChild.lastElementChild.lastElementChild
+    $(hoverItem).css('background-color','#3f0099');
+    $(hoverItem).css('color','white');
+  }, function() {
+    var hoverItem = this.lastElementChild.lastElementChild.lastElementChild.lastElementChild
+    $(hoverItem).css('background-color','white');
+    $(hoverItem).css('color','black');
+  });
+
+</script>

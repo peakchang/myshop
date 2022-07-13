@@ -1,0 +1,61 @@
+{% extends 'shop_base.html' %}
+
+{% block shop_content %}
+
+{% include 'shop/mainbanner.html' %}
+
+<div class="container mt-5">
+
+  <div class="each_head">
+    주제별 상품을 만나보세요
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-4 col-md-2 each_menu"> <a href=""><div class="pick_on active">자급제폰</div></a>  </div>
+    <div class="col-4 col-md-2 each_menu"> <a href=""><div class="pick_on">케이스 / 필름</div></a> </div>
+  </div>
+</div>
+
+
+<div class="insect">
+  {% include 'shop/main_list.html' with val=self_ph %}
+</div>
+
+<div class="insect">
+  {% include 'shop/main_list.html' with val=case_film %}
+</div>
+
+
+
+
+
+<script type="text/javascript">
+$('.pick_on').click(function(e){
+  var searchArr = [];
+  for (var i = 0; i < this.classList.length; i++) {
+    console.log(this.classList[i]);
+    searchArr.push(this.classList[i])
+  }
+  var chkActive = searchArr.includes('active');
+  console.log(chkActive);
+  if(chkActive){
+
+  }else {
+    e.preventDefault();
+    $('.pick_on').removeClass('active');
+    $(this).addClass('active')
+  }
+})
+
+var insect = document.querySelectorAll('.insect');
+$(insect).hide()
+$(insect[0]).show()
+$('.each_menu').click(function(){
+  var inum = $(this).index();
+  var insect = document.querySelectorAll('.insect');
+  $(insect).hide()
+  $(insect[inum]).show()
+})
+</script>
+
+{% endblock %}

@@ -29,8 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'django_quill',
+    'django_summernote',
     'accountapp',
-    'shopconfigapp'
+    'shopconfigapp',
+    'shop'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +60,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'myshop.context_processors.message_processor',
             ],
         },
     },
@@ -88,13 +93,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -115,3 +120,38 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accountapp.User'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 1024 * 1024 * 5,
+    'iframe': False,
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+        'width': '100%',
+        'height': '300',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['paragraph']],
+            # ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            # ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+        'fontNames': ['Spectral', 'Quicksand'],
+        'fontNamesIgnoreCheck': ['Spectral', 'Quicksand'],
+
+    },
+    # 'disable_attachment': True,
+}
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SUMMERNOTE_THEME = 'bs5'
+
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('home')

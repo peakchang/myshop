@@ -61,12 +61,12 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="">쇼핑몰설정</a>
+                            <a class="nav-link" href="{% url 'shopconfig:shopbase' %}">쇼핑몰설정</a>
                             <a class="nav-link" href="">메뉴관리</a>
                             <a class="nav-link" href="">팝업관리</a>
-                            <a class="nav-link" href="">분류관리</a>
+                            <a class="nav-link" href="{% url 'shopconfig:shopgroup' %}">분류관리</a>
                             <a class="nav-link" href="">요금제관리</a>
-                            <a class="nav-link" href="">상품관리</a>
+                            <a class="nav-link" href="{% url 'shopconfig:itemlist' %}">상품관리</a>
                             <a class="nav-link" href="">일반 상품 판매관리</a>
                             <a class="nav-link" href="">휴대폰 판매관리</a>
                         </nav>
